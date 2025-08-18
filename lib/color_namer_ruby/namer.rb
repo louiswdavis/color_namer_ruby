@@ -23,16 +23,19 @@ module ColorNamerRuby
     end
 
     def self.list_names
-      %w[basic html ntc pantone roygbiv x11]
+      ['basic', 'html', 'ntc', 'pantone', 'roygbiv', 'x11']
     end
 
+    # if the same names appear in multiple lists, they could still appear even if certain lists they are in are omitted
     def self.get_all_color_names(pick: [], omit: [])
       ColorNamerRuby::Namer.list_names.collect do |list_name|
         next unless (pick.empty? || pick.include?(list_name)) && !omit.include?(list_name)
 
         Object.const_get("ColorNamerRuby::#{list_name.capitalize}").colours.map { |hash| hash[:name] }
-      end.flatten.uniq.sort
+      end.compact.flatten.uniq.sort
     end
+
+    private
 
     def self.check_lists(pick, omit)
       name = nil

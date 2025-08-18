@@ -93,12 +93,19 @@ ColorNamerRuby::Namer.list_names
 => ['basic', 'html', 'ntc', 'pantone', 'roygbiv', 'x11']
 ```
 
+Get a list of all the colour names across the lists that can be checked against.
+
+```ruby
+ColorNamerRuby::Namer.get_all_color_names
+=> ['Azure', 'Denim', 'Steel Blue', ...]
+```
+
 ## Options
 
 ### pick
 
 This parameter allows you to filter names from the dedicated lists for faster computation.
-It can be used for both `get_name` and `get_names`.
+It can be used for `get_name`, `get_names`, or `get_all_color_names`.
 
 ```ruby
 ColorNamerRuby::Namer.get_names('#3672b4', pick: ['basic', 'x11'])
@@ -107,7 +114,7 @@ ColorNamerRuby::Namer.get_names('#3672b4', pick: ['basic', 'x11'])
 ### omit
 
 The opposite of `options.pick`.
-It can be used for both `get_name` and `get_names`.
+It can be used for `get_name`, `get_names`, or `get_all_color_names`.
 
 ```ruby
 ColorNamerRuby::Namer.get_names('#3672b4', omit: ['pantone', 'roygbiv'])

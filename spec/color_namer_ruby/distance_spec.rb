@@ -8,17 +8,17 @@ RSpec.describe ColorNamerRuby::Distance do
       expect(colour_list.first).to eq({ distance: 0.0, hex: '#FFD800', name: 'School bus Yellow' })
       expect(colour_list.last).to eq({ distance: 319.363429340305, hex: '#8E6F70', name: 'Opium' })
 
-      colour_list = described_class.get_names_from_hex('#FFC0CB', %w[basic html pantone], [], -1)
+      colour_list = described_class.get_names_from_hex('#FFC0CB', ['basic', 'html', 'pantone'], [], -1)
       expect(colour_list.length).to eq 288
       expect(colour_list.first).to eq({ distance: 0.0, hex: '#FFC0CB', name: 'pink' })
       expect(colour_list.last).to eq({ distance: 374.49165544775497, hex: '#000000', name: 'black' })
 
-      colour_list = described_class.get_names_from_hex('#0055ff', [], %w[ntc roygbiv], -1)
+      colour_list = described_class.get_names_from_hex('#0055ff', [], ['ntc', 'roygbiv'], -1)
       expect(colour_list.length).to eq 435
       expect(colour_list.first).to eq({ distance: 6.782329983125268, hex: '#1F75FE', name: 'Blue' })
       expect(colour_list.last).to eq({ distance: 246.77925358506133, hex: '#000000', name: 'black' })
 
-      colour_list = described_class.get_names_from_hex('#001625', %w[basic ntc roygbiv], %w[ntc pantone], -1)
+      colour_list = described_class.get_names_from_hex('#001625', ['basic', 'ntc', 'roygbiv'], ['ntc', 'pantone'], -1)
       expect(colour_list.length).to eq 28
       expect(colour_list.first).to eq({ distance: 30.0, hex: '#008080', name: 'teal' })
       expect(colour_list.last).to eq({ distance: 245.48930730278255, hex: '#FFFFFF', name: 'white' })
