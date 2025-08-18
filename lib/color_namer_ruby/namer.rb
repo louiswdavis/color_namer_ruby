@@ -26,11 +26,21 @@ module ColorNamerRuby
       %w[basic html ntc pantone roygbiv x11]
     end
 
+    def self.get_all_color_names(pick: [], omit: [])
+      ColorNamerRuby::Namer.list_names.collect do |list_name|
+        next unless (pick.empty? || pick.include?(list_name)) && !omit.include?(list_name)
+
+        Object.const_get("ColorNamerRuby::#{list_name.capitalize}").colours.map { |hash| hash[:name] }
+      end.flatten.uniq.sort
+    end
+
     def self.check_lists(pick, omit)
       name = nil
 
       self.list_names.each do |list_name|
-        name = Object.const_get("ColorNamerRuby::#{list_name.capitalize}").get_name_from_hex(@hex) if (pick.empty? || pick.include?(list_name)) && !omit.include?(list_name)
+        next unless (pick.empty? || pick.include?(list_name)) && !omit.include?(list_name)
+
+        name = Object.const_get("ColorNamerRuby::#{list_name.capitalize}").get_name_from_hex(@hex)
 
         break if name.present?
       end
