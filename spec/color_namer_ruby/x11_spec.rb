@@ -7,7 +7,7 @@ RSpec.describe ColorNamerRuby::X11 do
       expect(described_class.get_name_from_hex('#FFDeAd')).to eq 'navajowhite'
       expect(described_class.get_name_from_hex('#2f4f3f')).to eq nil
     end
-  
+
     it 'returns colours' do
       expect(described_class.colours.length).to eq 147
     end

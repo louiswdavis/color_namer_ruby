@@ -1,10 +1,10 @@
+# frozen_string_literal: true
+
 module ColorNamerRuby
   class Ntc
     def self.get_name_from_hex(hex)
       self.colours.select { |swatch| swatch[:hex] == hex.upcase }.first&.dig(:name)
     end
-
-    private
 
     def self.colours
       [
@@ -1573,7 +1573,7 @@ module ColorNamerRuby
         { name: 'Pale Canary', hex: '#FFFF99' },
         { name: 'Portafino', hex: '#FFFFB4' },
         { name: 'Ivory', hex: '#FFFFF0' },
-        { name: 'White', hex: '#FFFFFF' },
+        { name: 'White', hex: '#FFFFFF' }
       ]
     end
   end

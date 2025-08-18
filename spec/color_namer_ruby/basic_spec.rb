@@ -7,7 +7,7 @@ RSpec.describe ColorNamerRuby::Basic do
       expect(described_class.get_name_from_hex('#FFC0CB')).to eq 'pink'
       expect(described_class.get_name_from_hex('#ffd710')).to eq nil
     end
-  
+
     it 'returns colours' do
       expect(described_class.colours.length).to eq 21
     end

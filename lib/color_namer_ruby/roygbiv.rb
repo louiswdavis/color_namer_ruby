@@ -1,10 +1,10 @@
+# frozen_string_literal: true
+
 module ColorNamerRuby
   class Roygbiv
     def self.get_name_from_hex(hex)
       self.colours.select { |swatch| swatch[:hex] == hex.upcase }.first&.dig(:name)
     end
-
-    private
 
     def self.colours
       [
@@ -14,7 +14,7 @@ module ColorNamerRuby
         { name: 'green', hex: '#008000' },
         { name: 'blue', hex: '#0000FF' },
         { name: 'indigo', hex: '#4B0082' },
-        { name: 'violet', hex: '#EE82EE' },
+        { name: 'violet', hex: '#EE82EE' }
       ]
     end
   end

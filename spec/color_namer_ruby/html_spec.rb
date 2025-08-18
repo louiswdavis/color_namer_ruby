@@ -7,7 +7,7 @@ RSpec.describe ColorNamerRuby::Html do
       expect(described_class.get_name_from_hex('#3cb371')).to eq 'mediumseagreen'
       expect(described_class.get_name_from_hex('#ffd710')).to eq nil
     end
-  
+
     it 'returns colours' do
       expect(described_class.colours.length).to eq 147
     end

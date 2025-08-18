@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ColorNamerRuby
   class X11
     def self.get_name_from_hex(hex)
@@ -152,7 +154,7 @@ module ColorNamerRuby
         { name: 'blueviolet', hex: '#8a2be2' },
         { name: 'azure', hex: '#f0ffff' },
         { name: 'lightsteelblue', hex: '#b0c4de' },
-        { name: 'oldlace', hex: '#fdf5e6' },
+        { name: 'oldlace', hex: '#fdf5e6' }
       ]
     end
   end

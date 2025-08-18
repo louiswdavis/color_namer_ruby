@@ -34,13 +34,13 @@ Gem::Specification.new do |spec|
   # spec.require_paths = ['lib']
 
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
-    Dir["{lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+    Dir['{lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
   end
 
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency 'example-gem', '~> 1.0'
-  spec.add_dependency 'color_conversion', '~> 0.1.2'
   spec.add_dependency 'activesupport'
+  spec.add_dependency 'color_conversion', '~> 0.1.2'
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html

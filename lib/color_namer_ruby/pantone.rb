@@ -1,10 +1,10 @@
+# frozen_string_literal: true
+
 module ColorNamerRuby
   class Pantone
     def self.get_name_from_hex(hex)
       self.colours.select { |swatch| swatch[:hex] == hex.upcase }.first&.dig(:name)
     end
-
-    private
 
     def self.colours
       [
@@ -127,7 +127,7 @@ module ColorNamerRuby
         { name: 'Timberwolf', hex: '#DBD7D2' },
         { name: 'Silver', hex: '#CDC5C2' },
         { name: 'Gray', hex: '#95918C' },
-        { name: 'Black', hex: '#232323' },
+        { name: 'Black', hex: '#232323' }
       ]
     end
   end

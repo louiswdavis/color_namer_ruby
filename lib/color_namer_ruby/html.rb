@@ -1,10 +1,10 @@
+# frozen_string_literal: true
+
 module ColorNamerRuby
   class Html
     def self.get_name_from_hex(hex)
       self.colours.select { |swatch| swatch[:hex] == hex.upcase }.first&.dig(:name)
     end
-
-    private
 
     def self.colours
       [
@@ -154,10 +154,8 @@ module ColorNamerRuby
         { name: 'snow', hex: '#FFFAFA' },
         { name: 'tomato', hex: '#FF6347' },
         { name: 'white', hex: '#FFFFFF' },
-        { name: 'yellow', hex: '#FFFF00' },
+        { name: 'yellow', hex: '#FFFF00' }
       ]
     end
   end
 end
-
-
