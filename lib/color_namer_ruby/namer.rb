@@ -9,9 +9,11 @@ module ColorNamerRuby
       # alt_colour_value are used to collect colour paramaters when they are passed in the key format
       @hex = ColorConversion::Color.new(colour_value.presence || alt_colour_value).hex
 
+      # if we get an exact match, return it
       name = self.check_lists(pick, omit)
       return name if name.present?
 
+      # if we don't get an exact match, try to find the closest match
       name_object = ColorNamerRuby::Distance.get_names_from_hex(@hex, pick, omit, 1).first
       name_object.dig(:name)
     end
@@ -19,6 +21,7 @@ module ColorNamerRuby
     def self.get_names(colour_value, pick: [], omit: [], limit: -1, **alt_colour_value)
       @hex = ColorConversion::Color.new(colour_value.presence || alt_colour_value).hex
 
+      # get the closest matches up to the count limit
       ColorNamerRuby::Distance.get_names_from_hex(@hex, pick, omit, limit)
     end
 

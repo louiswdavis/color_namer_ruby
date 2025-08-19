@@ -7,6 +7,9 @@
 # Layout/SpaceInsideArrayLiteralBrackets:
 #   Enabled: false
 
+AllCops:
+  TargetRubyVersion: 2.3
+
 Gemspec/RequiredRubyVersion:
   Enabled: false
 
