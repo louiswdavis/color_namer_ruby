@@ -37,67 +37,110 @@ gem install color_name_ruby
 
 ## Usage
 
+## Methods
+
+Possible methods:
+
+```ruby
+ColorNamerRuby.list_collections
+ColorNamerRuby.get_name
+ColorNamerRuby.get_names
+ColorNamerRuby.get_all_names
+ColorNamerRuby.get_colour
+ColorNamerRuby.get_colours
+ColorNamerRuby.get_all_colours
+```
+
+Get a list of the colour collections that can be checked against.
+
+```ruby
+ColorNamerRuby.list_collections
+=> ['basic', 'html', 'ntc', 'pantone', 'roygbiv', 'x11']
+```
+
 Get a single name for a colour using `.get_name` by passing a colour in a way that [ColorConversion]((https://github.com/devrieda/color_conversion)) accepts.
 When passing colours with their properties assigned to keys, you need to pass nil or an empty string as the first parameter.
 
 ```ruby
-ColorNamerRuby::Namer.get_name('#3672b4')
-=> 'Azure'
+ColorNamerRuby.get_name('#3672b4')
+=> ['azure']
 
-ColorNamerRuby::Namer.get_name('', r: 70, g: 130, b: 180, a: 0.5)
-=> 'steelblue'
+ColorNamerRuby.get_name('', r: 70, g: 130, b: 180, a: 0.5)
+=> ['steelblue']
 
-ColorNamerRuby:Namer.get_name('', r: 130, g: 180, b: 70)
-=> 'Sushi'
+ColorNamerRuby.get_name('', r: 130, g: 180, b: 70)
+=> ['sushi']
 
-ColorNamerRuby:Namer.get_name('', h: 20, s: 73, l: 20)
-=> 'Cioccolato'
+ColorNamerRuby.get_name('', h: 20, s: 73, l: 20)
+=> ['cioccolato']
 
-ColorNamerRuby:Namer.get_name(nil, h: 107, s: 61, v: 71)
-=> 'Apple'
+ColorNamerRuby.get_name(nil, h: 107, s: 61, v: 71)
+=> ['apple']
 
-ColorNamerRuby::Namer.get_name(nil, h: 61, s: 71, b: 32)
-=> 'Camouflage'
+ColorNamerRuby.get_name(nil, h: 61, s: 71, b: 32)
+=> ['camouflage']
 
-ColorNamerRuby::Namer.get_name(nil, c: 71, m: 15, y: 5, k: 54)
-=> 'Blue Dianne'
+ColorNamerRuby.get_name(nil, c: 71, m: 15, y: 5, k: 54)
+=> ['blue dianne']
 
-ColorNamerRuby::Namer.get_name('rgb(51, 102, 204)')
-=> 'Denim'
+ColorNamerRuby.get_name('rgb(51, 102, 204)')
+=> ['denim']
 
-ColorNamerRuby::Namer.get_name('hsl(225, 73%, 57%)')
-=> 'royalblue'
+ColorNamerRuby.get_name('hsl(225, 73%, 57%)')
+=> ['royalblue']
 ```
 
 Get a list of colour names sorted by their perceptual similarity to the given color by using `.get_names`.
 Again, when passing colours with their properties assigned to keys, you need to pass nil or an empty string as the first parameter.
 
 ```ruby
-ColorNamerRuby::Namer.get_names('#3672b4')
+ColorNamerRuby.get_names('#3672b4')
+=> ['azure', 'st tropaz', 'denim', 'steelblue', ...]
+```
+
+Get a list of all the colour names across the lists that can be checked against.
+
+```ruby
+ColorNamerRuby.get_all_names
+=> ['black', 'blue', 'cyan', 'green', 'teal', ...]
+```
+
+You can also get the entire swatch object(s) to view the hex values and distance the colours are from the source colour you provided. These methods are all related/similar to their 'name' named method counterparts, except they provide the colour hash instead of just the name, and can be called in a similar way too.
+
+When passing colours with their properties assigned to keys, you need to pass nil or an empty string as the first parameter.
+
+```ruby
+ColorNamerRuby.get_colour('#3672b4')
+=> [{ distance: 8.660254037844387, hex: '#315BA1', name: 'azure' }]
+```
+
+Get a list of colour hashes sorted by their perceptual similarity to the given color by using `.get_colours`.
+Again, when passing colours with their properties assigned to keys, you need to pass nil or an empty string as the first parameter.
+
+```ruby
+ColorNamerRuby.get_colours('#3672b4')
 => [
-=>   { name: 'Azure', hex: '#315BA1', distance: 8.660254037844387 },
-=>   { name: 'St Tropaz', hex: '#2D569B', distance: 9.9498743710662 },
-=>   { name: 'Denim', hex: '#2B6CC4', distance: 10.816653826391969 },
-=>   { name: 'steelblue', hex: '#4682B4', distance: 11.180339887498949 },
-=>   { name: 'Steel Blue', hex: '#4682B4', distance: 11.180339887498949 },
+=>   { distance: 8.660254037844387, hex: '#315BA1', name: 'azure' },
+=>   { distance: 9.9498743710662, hex: '#2D569B', name: 'st tropaz' },
+=>   { distance: 10.81665382639196, name: 'denim' },
 =>   .
 =>   .
 =>   .
 => ]
 ```
 
-Get a list of the colour lists that can be checked against.
+Get a list of all the colour hashes across the lists that can be checked against.
 
 ```ruby
-ColorNamerRuby::Namer.list_names
-=> ['basic', 'html', 'ntc', 'pantone', 'roygbiv', 'x11']
-```
-
-Get a list of all the colour names across the lists that can be checked against.
-
-```ruby
-ColorNamerRuby::Namer.get_all_color_names
-=> ['Azure', 'Denim', 'Steel Blue', ...]
+ColorNamerRuby.get_all_colours
+=> [
+=>   { name: 'black', hex: '#000000', collection: 'basic' },
+=>   { name: 'blue', hex: '#0000FF', collection: 'basic' },
+=>   { name: 'cyan', hex: '#00FFFF', collection: 'basic' },
+=>   .
+=>   .
+=>   .
+=> ]
 ```
 
 ## Options
@@ -105,28 +148,28 @@ ColorNamerRuby::Namer.get_all_color_names
 ### pick
 
 This parameter allows you to filter names from the dedicated lists for faster computation.
-It can be used for `get_name`, `get_names`, or `get_all_color_names`.
+It can be used for `get_name`, `get_names`, `get_all_names`, or `get_colour`, `get_colours`, `get_all_colours`.
 
 ```ruby
-ColorNamerRuby::Namer.get_names('#3672b4', pick: ['basic', 'x11'])
+ColorNamerRuby.get_names('#3672b4', pick: ['basic', 'x11'])
 ```
 
 ### omit
 
 The opposite of `options.pick`.
-It can be used for `get_name`, `get_names`, or `get_all_color_names`.
+It can be used for `get_name`, `get_names`, `get_all_names`, or `get_colour`, `get_colours`, `get_all_colours`.
 
 ```ruby
-ColorNamerRuby::Namer.get_names('#3672b4', omit: ['pantone', 'roygbiv'])
+ColorNamerRuby.get_names('#3672b4', omit: ['pantone', 'roygbiv'])
 ```
 
 ### limit
 
 This option allows us to limit the number of names that are returned to keep the returned output manageable.
-It can be used for `get_names` (since `get_name` already has a limit of 1).
+It can be used for `get_names`, or `get_colours` (since `get_name` and  `get_colour` already have a limit of 1).
 
 ```ruby
-ColorNamerRuby::Namer.get_names('#3672b4', limit: 5)
+ColorNamerRuby.get_names('#3672b4', limit: 5)
 ```
 
 ###
