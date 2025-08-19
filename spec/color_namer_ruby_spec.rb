@@ -7,7 +7,6 @@ RSpec.describe ColorNamerRuby do
 
   context 'methods' do
     it 'returns list_collections' do
-      byebug
       expect(described_class.list_collections).to eq ['basic', 'html', 'ntc', 'pantone', 'roygbiv', 'x11']
     end
 
