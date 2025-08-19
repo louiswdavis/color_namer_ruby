@@ -10,8 +10,10 @@ module ColorNamerRuby
 
       colour_lists = []
 
-      ColorNamerRuby::Namer.list_names.each do |list_name|
-        colour_lists += self.get_colour_distances_in_list(Object.const_get("ColorNamerRuby::#{list_name.capitalize}").colours) if (pick.empty? || pick.include?(list_name)) && !omit.include?(list_name)
+      ColorNamerRuby.list_collections.each do |collection_name|
+        next unless (pick.empty? || pick.include?(collection_name)) && !omit.include?(collection_name)
+
+        colour_lists += self.get_colour_distances_in_list(Object.const_get("ColorSwatchCollection::#{collection_name.capitalize}").colours)
       end
 
       colour_lists = colour_lists.flatten.compact.reject(&:empty?)
