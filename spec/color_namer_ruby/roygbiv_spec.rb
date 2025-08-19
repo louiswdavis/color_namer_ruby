@@ -3,6 +3,7 @@
 RSpec.describe ColorNamerRuby::Roygbiv do
   context 'methods' do
     it 'returns get_name_from_hex' do
+      expect(described_class.get_name_from_hex('')).to eq nil
       expect(described_class.get_name_from_hex('#FF0000')).to eq 'red'
       expect(described_class.get_name_from_hex('#EE82ee')).to eq 'violet'
       expect(described_class.get_name_from_hex('#008001')).to eq nil
