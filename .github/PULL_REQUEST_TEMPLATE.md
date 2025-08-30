@@ -23,6 +23,8 @@ If yes, please describe the impact and migration path for existing applications:
 
 ## Has any functionality been removed?
 
+- [ ] Yes
+- [ ] No
 -
 -
 
