@@ -12,14 +12,8 @@ Mike Bostock of [D3](http://d3js.org/) fame [explains it well](https://gist.gith
 
 ## Lists
 
-The color names are derived from several lists:
-
-- [roygbiv](lib/color_namer_rails/roygbiv.rb)
-- [basic](lib/color_namer_rails/basic.rb)
-- [html](lib/color_namer_rails/html.rb) - the HTML color names.
-- [x11](lib/color_namer_rails/x11.rb) - The list that preceded the HTML color names
-- [pantone](lib/color_namer_rails/pantone.rb)
-- [ntc](lib/color_namer_rails/ntc.rb), an [astounding collection](http://chir.ag/projects/ntc/) of over 1500 named colors.
+The color names are derived from several lists in the [ColorSwatchCollection gem](https://github.com/louiswdavis/color_swatch_collection).
+Because of the number of swatches, if you put in a "basic" colour like "blue" there are many interpretations across the lists of what that colour should be so it may not match your expectation.
 
 ## Installation
 
@@ -55,7 +49,7 @@ Get a list of the colour collections that can be checked against.
 
 ```ruby
 ColorNamerRuby.list_collections
-=> ['basic', 'html', 'ntc', 'pantone', 'roygbiv', 'x11']
+=> ["basic", "html", "ntc", "pantone", "roygbiv", "x11", "tailwind_v1", "tailwind_v2", "tailwind_v3", "tailwind_v4"]
 ```
 
 Get a single name for a colour using `.get_name` by passing a colour in a way that [ColorConversion]((https://github.com/devrieda/color_conversion)) accepts.
@@ -63,31 +57,31 @@ When passing colours with their properties assigned to keys, you need to pass ni
 
 ```ruby
 ColorNamerRuby.get_name('#3672b4')
-=> ['azure']
+=> ["blue-700"]
 
 ColorNamerRuby.get_name('', r: 70, g: 130, b: 180, a: 0.5)
-=> ['steelblue']
+=> ["steelblue"]
 
 ColorNamerRuby.get_name('', r: 130, g: 180, b: 70)
-=> ['sushi']
+=> ["sushi"]
 
 ColorNamerRuby.get_name('', h: 20, s: 73, l: 20)
-=> ['cioccolato']
+=> ["cioccolato"]
 
 ColorNamerRuby.get_name(nil, h: 107, s: 61, v: 71)
-=> ['apple']
+=> ["apple"]
 
 ColorNamerRuby.get_name(nil, h: 61, s: 71, b: 32)
-=> ['camouflage']
+=> ["camouflage"]
 
 ColorNamerRuby.get_name(nil, c: 71, m: 15, y: 5, k: 54)
-=> ['blue dianne']
+=> ["blue dianne"]
 
 ColorNamerRuby.get_name('rgb(51, 102, 204)')
-=> ['denim']
+=> ["denim"]
 
 ColorNamerRuby.get_name('hsl(225, 73%, 57%)')
-=> ['royalblue']
+=> ["royalblue"]
 ```
 
 Get a list of colour names sorted by their perceptual similarity to the given color by using `.get_names`.
@@ -95,7 +89,7 @@ Again, when passing colours with their properties assigned to keys, you need to 
 
 ```ruby
 ColorNamerRuby.get_names('#3672b4')
-=> ['azure', 'st tropaz', 'denim', 'steelblue', ...]
+=> ["blue-700", "azure", "blue-600", "st tropaz", "denim", "steelblue", ...]
 ```
 
 Get a list of all the colour names across the lists that can be checked against.
@@ -111,7 +105,7 @@ When passing colours with their properties assigned to keys, you need to pass ni
 
 ```ruby
 ColorNamerRuby.get_colour('#3672b4')
-=> [{ distance: 8.660254037844387, hex: '#315BA1', name: 'azure' }]
+=> [{ distance: 7.615773105863909, hex: "#2B6CB0", name: "blue-700" }]
 ```
 
 Get a list of colour hashes sorted by their perceptual similarity to the given color by using `.get_colours`.
@@ -120,9 +114,11 @@ Again, when passing colours with their properties assigned to keys, you need to 
 ```ruby
 ColorNamerRuby.get_colours('#3672b4')
 => [
-=>   { distance: 8.660254037844387, hex: '#315BA1', name: 'azure' },
-=>   { distance: 9.9498743710662, hex: '#2D569B', name: 'st tropaz' },
-=>   { distance: 10.81665382639196, name: 'denim' },
+=>   { distance: 7.615773105863909, hex: "#2B6CB0", name: "blue-700" },
+=>   { distance: 8.660254037844387, hex: "#315BA1", name: "azure" },
+=>   { distance: 9.16515138991168, hex: "#3182CE", name: "blue-600" },
+=>   { distance: 9.9498743710662, hex: "#2D569B", name: "st tropaz" },
+=>   { distance: 10.816653826391969, hex: "#2B6CC4", name: "denim" },
 =>   .
 =>   .
 =>   .
@@ -152,6 +148,7 @@ It can be used for `get_name`, `get_names`, `get_all_names`, or `get_colour`, `g
 
 ```ruby
 ColorNamerRuby.get_names('#3672b4', pick: ['basic', 'x11'])
+=> ["steelblue", "royalblue", "cornflowerblue", "lightsteelblue", "mediumturquoise", ...]
 ```
 
 ### omit
@@ -160,7 +157,8 @@ The opposite of `options.pick`.
 It can be used for `get_name`, `get_names`, `get_all_names`, or `get_colour`, `get_colours`, `get_all_colours`.
 
 ```ruby
-ColorNamerRuby.get_names('#3672b4', omit: ['pantone', 'roygbiv'])
+ColorNamerRuby.get_names('#3672b4', omit: ['pantone', 'roygbiv', 'tailwind_v1'])
+=> ["azure", "st tropaz", "steelblue", "steelblue", "steel blue", ...]
 ```
 
 ### limit
@@ -169,7 +167,8 @@ This option allows us to limit the number of names that are returned to keep the
 It can be used for `get_names`, or `get_colours` (since `get_name` and  `get_colour` already have a limit of 1).
 
 ```ruby
-ColorNamerRuby.get_names('#3672b4', limit: 5)
+ColorNamerRuby.get_names('#3672b4', limit: 3)
+=> ["blue-700", "azure", "blue-600"]
 ```
 
 ###

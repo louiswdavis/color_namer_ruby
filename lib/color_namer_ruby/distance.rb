@@ -2,6 +2,7 @@
 
 require 'color_conversion'
 require 'active_support/core_ext/object/blank'
+require 'active_support/core_ext/string/inflections'
 
 module ColorNamerRuby
   class Distance
@@ -13,7 +14,7 @@ module ColorNamerRuby
       ColorNamerRuby.list_collections.each do |collection_name|
         next unless (pick.empty? || pick.include?(collection_name)) && !omit.include?(collection_name)
 
-        colour_lists += self.get_colour_distances_in_list(Object.const_get("ColorSwatchCollection::#{collection_name.capitalize}").colours)
+        colour_lists += self.get_colour_distances_in_list(Object.const_get("ColorSwatchCollection::#{collection_name.classify}").colours)
       end
 
       colour_lists = colour_lists.flatten.compact.reject(&:empty?)
