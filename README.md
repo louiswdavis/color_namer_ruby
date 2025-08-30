@@ -1,5 +1,7 @@
 # Color Namer Ruby
 
+[![Gem Version](https://badge.fury.io/rb/color_namer_ruby.svg)](https://badge.fury.io/rb/color_namer_ruby)
+
 > Give me a color and I'll name it.
 
 Color Namer Ruby is an ruby gem package for use in ruby or other projects that provides names for colours based on calculated color distances using the [Delta-E](http://www.colorwiki.com/wiki/Delta_E%3a_The_Color_Difference) color difference technique.
