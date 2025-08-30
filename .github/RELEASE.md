@@ -1,3 +1,5 @@
+# Release vX.X.X
+
 ## What kind of changes have been introduced?
 
 - [ ] Feature
