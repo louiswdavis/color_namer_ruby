@@ -1,6 +1,6 @@
 # Color Namer Ruby
 
-![Gem Version](https://badge.fury.io/rb/color_namer_ruby.svg)
+[![Gem Version](https://badge.fury.io/rb/color_namer_ruby.svg)](https://badge.fury.io/rb/color_namer_ruby)
 [![Static Badge](https://img.shields.io/badge/RubyGems-red)](https://rubygems.org/gems/color_namer_ruby)
 
 > Give me a color and I'll name it.
